@@ -22,7 +22,7 @@ def displayBoard(list):
     print(copyBoard[6] + '|' + copyBoard[7] + '|' + copyBoard[8])
     
 
-# Player 1 to make a move.
+# Player 1's turn.
 def makeAMove1():
     print("Het is de beurt aan Speler 1! Waar wil je een kruisje zetten?")
     while True:
@@ -37,7 +37,7 @@ def makeAMove1():
     for i in range(len(newBoard)):
         newBoard[turn-1] = 1 # Success, the given value is changed in '1', the x.
                
-#Speler 2 is aan zet
+#S Spaler 2's turn
 def makeAMove2():
     print("Het is de beurt aan Speler 2! Waar wil je een rondje zetten?")
     while True:
