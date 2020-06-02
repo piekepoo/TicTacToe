@@ -32,30 +32,30 @@ def makeAMove1():
     print("Het is de beurt aan Speler 1! Waar wil je een kruisje zetten?")
     while True:
       try:
-        zet = int(input("Speler 1 voert een getal in van 1 tot 9: "))
-        if (zet > 0 and zet < 10) and newBoard[zet-1] == 0: 
+        turn = int(input("Speler 1 voert een getal in van 1 tot 9: "))
+        if (turn > 0 and turn < 10) and newBoard[turn-1] == 0: 
             #Controleert of waarde tussen 0-9 is en of de ingegeven plaats vrij is
             break
         print("Voer een geldige zet in op een vrije plek van 1 tot 9!") #Het getal is niet tussen 1-9 of niet vrij
       except Exception as e:
         print('Weet je niet wat een getal is?') #String ingegeven of float
     for i in range(len(newBoard)):
-        newBoard[zet-1] = 1 #Succes dus vakje wordt veranderd in een '1'
+        newBoard[turn-1] = 1 #Succes dus vakje wordt veranderd in een '1'
                
 #Speler 2 is aan zet
 def makeAMove2():
     print("Het is de beurt aan Speler 2! Waar wil je een rondje zetten?")
     while True:
       try:
-        zet = int(input("Speler 2 voert een getal in van 1 tot 9: "))
-        if (zet > 0 and zet < 10) and newBoard[zet-1] == 0:
+        turn = int(input("Speler 2 voert een getal in van 1 tot 9: "))
+        if (turn > 0 and turn < 10) and newBoard[turn-1] == 0:
             #Controleert of waarde tussen 0-9 is en of de ingegeven plaats vrij is
             break
         print("Voer een geldige zet in op een vrije plek van 1 tot 9!")
       except Exception as e:
         print('Weet je niet wat een getal is?')
     for i in range(len(newBoard)):
-        newBoard[zet-1] = 2 #Succes dus vakje wordt verandert in een '2'
+        newBoard[turn-1] = 2 #Succes dus vakje wordt verandert in een '2'
         
 def boardEvaluate():
     if (newBoard[0] == newBoard[1] == newBoard[2] == 1 # eerste rij horizontaal = 'x'
@@ -128,15 +128,19 @@ def startGame():
         if (boardEvaluate() == 3):
             print('Er kunnen nog zetten gedaan worden.')
     displayBoard(newBoard)
-    playAgain = int(input("Nog een keer spelen? y/n"))
-    if (playAgain == 'y'):
-        #newBoard = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-       # startGame()
-        gameOn = True
-    else:
-        print('Boo!')
+    gameOn = False
 
-newBoard = [0, 0, 0, 0, 0, 0, 0, 0, 0] #Begint nieuw bord met lege vakjes.            
-startGame()#Begin spel.
+
+while True:
+    newBoard = [0, 0, 0, 0, 0, 0, 0, 0, 0] #Begint nieuw bord met lege vakjes.            
+    startGame()#Begin spel.
+    restart = input('Wil je nog een keer spelen? y/n?')
+    if restart == 'n':
+        print('Boo!')
+        break
+    elif restart == 'y':
+        continue
+    else:
+        break
 
 
