@@ -3,15 +3,10 @@
 #
 # (C) 2020 Pieke Heijmans
 # -----------------------------------------------------------
-"""Hi Karim,
-I have created a game of TicTacToe and it's working fine, except for the part of PlayAgain at the bottom of the code. 
-Basically what I want is that the user has the option to start over if they type 'y'.
-Problem is that within the loop I cannot call the variable newBoard as it is defined outside of the loop and I can't find a way to reset the global variable within the loop.
-I have to change tnhings around  but I'm not sure how. Thanks for looking at it <3"""
 
-#Functie om het board als TicTacToe te weergeven
+# Function to display the TicTacToeBoard
 def displayBoard(list):
-    #Maak een kopie om bij de weergave de waarden van het booard niet direct aan te spreken
+    # Copy board list, to not directly change the boardlist values.
     copyBoard = []
     for i in list:
         if (i == 0):
@@ -27,20 +22,20 @@ def displayBoard(list):
     print(copyBoard[6] + '|' + copyBoard[7] + '|' + copyBoard[8])
     
 
-#Speler 1 is aan zet
+# Player 1 to make a move.
 def makeAMove1():
     print("Het is de beurt aan Speler 1! Waar wil je een kruisje zetten?")
     while True:
       try:
         turn = int(input("Speler 1 voert een getal in van 1 tot 9: "))
         if (turn > 0 and turn < 10) and newBoard[turn-1] == 0: 
-            #Controleert of waarde tussen 0-9 is en of de ingegeven plaats vrij is
+            # If statement to check whether the values are between 0-9 and whether the given value is occupied or not.
             break
-        print("Voer een geldige zet in op een vrije plek van 1 tot 9!") #Het getal is niet tussen 1-9 of niet vrij
+        print("Voer een geldige zet in op een vrije plek van 1 tot 9!") # The number is not valid or place is occupied.
       except Exception as e:
-        print('Weet je niet wat een getal is?') #String ingegeven of float
+        print('Weet je niet wat een getal is?') #User typed in string or float value.
     for i in range(len(newBoard)):
-        newBoard[turn-1] = 1 #Succes dus vakje wordt veranderd in een '1'
+        newBoard[turn-1] = 1 # Success, the given value is changed in '1', the x.
                
 #Speler 2 is aan zet
 def makeAMove2():
@@ -49,25 +44,25 @@ def makeAMove2():
       try:
         turn = int(input("Speler 2 voert een getal in van 1 tot 9: "))
         if (turn > 0 and turn < 10) and newBoard[turn-1] == 0:
-            #Controleert of waarde tussen 0-9 is en of de ingegeven plaats vrij is
+             # If statement to check whether the values are between 0-9 and whether the given value is occupied or not.
             break
         print("Voer een geldige zet in op een vrije plek van 1 tot 9!")
       except Exception as e:
         print('Weet je niet wat een getal is?')
     for i in range(len(newBoard)):
-        newBoard[turn-1] = 2 #Succes dus vakje wordt verandert in een '2'
+        newBoard[turn-1] = 2 # Success, the given value is changed in '2', the o.
         
 def boardEvaluate():
-    if (newBoard[0] == newBoard[1] == newBoard[2] == 1 # eerste rij horizontaal = 'x'
-        or newBoard[3] == newBoard[4] == newBoard[5] == 1 # tweede rij horizontaal = 'x'
+    if (newBoard[0] == newBoard[1] == newBoard[2] == 1 # First horizontal row = 'x'
+        or newBoard[3] == newBoard[4] == newBoard[5] == 1 # Second horizontal row = 'x'
         or newBoard[6] == newBoard[7] == newBoard[8] == 1
-        or newBoard[0] == newBoard[3] == newBoard[6] == 1 #eerste rij verticaal = 'x'
+        or newBoard[0] == newBoard[3] == newBoard[6] == 1 # First vertical row = 'x'
         or newBoard[1] == newBoard[4] == newBoard[7] == 1 #etc etc.
         or newBoard[2] == newBoard[5] == newBoard[8] == 1
         or newBoard[0] == newBoard[4] == newBoard[8] == 1
         or newBoard[6] == newBoard[4] == newBoard[2] == 1):
-        return 0 #Return 0 in geval dat speler 1 3 op rij heeft en dus wint.
-    if (newBoard[0] == newBoard[1] == newBoard[2] == 2
+        return 0 # Return 0 in case that Player 1 has 3 in a row and wins the game.
+    if (newBoard[0] == newBoard[1] == newBoard[2] == 2 # First horizontal row = 'o'
         or newBoard[3] == newBoard[4] == newBoard[5] == 2
         or newBoard[6] == newBoard[7] == newBoard[8] == 2
         or newBoard[0] == newBoard[3] == newBoard[6] == 2
@@ -75,7 +70,7 @@ def boardEvaluate():
         or newBoard[2] == newBoard[5] == newBoard[8] == 2
         or newBoard[0] == newBoard[4] == newBoard[8] == 2
         or newBoard[6] == newBoard[4] == newBoard[2] == 2):
-        return 1 #Return 1 in geval dat speler 2 3 op rij heef en dus wint.
+        return 1 # Return 1 in case that Player 2 has 3 in a row and wins the game.
     if (newBoard[0] != 0
         and newBoard[1] != 0
         and newBoard[2] != 0     
@@ -85,31 +80,31 @@ def boardEvaluate():
         and newBoard[6] != 0
         and newBoard[7] != 0  
         and newBoard[8] != 0):
-        return 2 #Return 2 als alle zetten niet 0 zijn, en dus allemaal ingevuld zijn maar geen winnaar er uit komt: gelijkspel.
+        return 2 # Return 2: it's a tie and all spaces on the board are occupied.
     else: 
-        return 3 #Nog geen winnaar en nog steeds vakjes vrij: speel door.
+        return 3 # There is no winner yet and spots are available: keep playing.
 
 
 def startGame():
     gameOn = True
-    while (gameOn): #Blijf dit doen tot spel afgelopen.
+    while (gameOn): # Keep making moves untill the game has finished.
         displayBoard(newBoard)
         makeAMove1()
-        print("\n") #Netter format met meer spacing tussen rondes.
+        print("\n") # To add more spacing between rounds, visually more appealing.
         if (boardEvaluate() == 0):
             print('Speler 1 wint het spel!')
-            gameOn = False #Einde spel als Speler 1 wint.
+            gameOn = False # End game, Player 1 wins.
             break
         if (boardEvaluate() == 1):
             print('Speler 2 wint het spel!')
-            gameOn == False #Einde spel als Speler 2 wint.
+            gameOn == False # End game, Player 2 wins.
             break
         if (boardEvaluate() == 2):
-            print('Oh oh! Gelijkspel.')
+            print('Oh oh! Gelijkspel.') #It's a Tie
             gameOn == False
             break
         if (boardEvaluate() == 3):
-            print('Er kunnen nog zetten gedaan worden.') #Geen break, want spel speelt door.
+            print('Er kunnen nog zetten gedaan worden.') # Keep playing.
         displayBoard(newBoard)
         makeAMove2()
         print("\n")
@@ -132,9 +127,9 @@ def startGame():
 
 
 while True:
-    newBoard = [0, 0, 0, 0, 0, 0, 0, 0, 0] #Begint nieuw bord met lege vakjes.            
-    startGame()#Begin spel.
-    restart = input('Wil je nog een keer spelen? y/n?')
+    newBoard = [0, 0, 0, 0, 0, 0, 0, 0, 0] # Start a new, empty board.            
+    startGame()# Starts game.
+    restart = input('Wil je nog een keer spelen? y/n?') # Restart the game.
     print("\n")
     if restart == 'n':
         print('Boo!')
