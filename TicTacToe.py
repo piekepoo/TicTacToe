@@ -121,7 +121,7 @@ def startGame():
             gameOn == False
             break
         if (boardEvaluate() == 3):
-            print('Er kunnen n2og zetten gedaan worden.')
+            print('Er kunnen nog zetten gedaan worden.')
     displayBoard(newBoard)
     gameOn = False
 
@@ -129,7 +129,7 @@ def startGame():
 while True:
     newBoard = [0, 0, 0, 0, 0, 0, 0, 0, 0] # Start a new, empty board.            
     startGame()# Starts game.
-    restart = input('Wil je nog een keer spelen? y/n?') # Restart the game.
+    restart = input('Wil je nog een keer spelen? y/n') # Restart the game.
     print("\n")
     if restart == 'n':
         print('Boo!')
