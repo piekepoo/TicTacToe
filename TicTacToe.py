@@ -7,7 +7,7 @@
 I have created a game of TicTacToe and it's working fine, except for the part of PlayAgain at the bottom of the code. 
 Basically what I want is that the user has the option to start over if they type 'y'.
 Problem is that within the loop I cannot call the variable newBoard as it is defined outside of the loop and I can't find a way to reset the global variable within the loop.
-I have to change things around  but I'm not sure how. Thanks for looking at it <3"""
+I have to change tnhings around  but I'm not sure how. Thanks for looking at it <3"""
 
 #Functie om het board als TicTacToe te weergeven
 def displayBoard(list):
@@ -20,11 +20,11 @@ def displayBoard(list):
             copyBoard.append('x')
         if (i == 2):
             copyBoard.append('o')
-    print(copyBoard[0], '|', copyBoard[1], '|', copyBoard[2])
-    print('---------')
-    print(copyBoard[3], '|', copyBoard[4], '|', copyBoard[5])
-    print('---------')
-    print(copyBoard[6], '|', copyBoard[7], '|', copyBoard[8])
+    print(copyBoard[0] + '|' + copyBoard[1] + '|' + copyBoard[2])
+    print('-+-+-')
+    print(copyBoard[3] + '|' + copyBoard[4] + '|'+ copyBoard[5])
+    print('-+-+-')
+    print(copyBoard[6] + '|' + copyBoard[7] + '|' + copyBoard[8])
     
 
 #Speler 1 is aan zet
@@ -126,7 +126,7 @@ def startGame():
             gameOn == False
             break
         if (boardEvaluate() == 3):
-            print('Er kunnen nog zetten gedaan worden.')
+            print('Er kunnen n2og zetten gedaan worden.')
     displayBoard(newBoard)
     gameOn = False
 
@@ -135,12 +135,14 @@ while True:
     newBoard = [0, 0, 0, 0, 0, 0, 0, 0, 0] #Begint nieuw bord met lege vakjes.            
     startGame()#Begin spel.
     restart = input('Wil je nog een keer spelen? y/n?')
+    print("\n")
     if restart == 'n':
         print('Boo!')
+        print("\n")
+        print('Spel verlaten.')
         break
     elif restart == 'y':
         continue
     else:
+        print('Spel verlaten.')
         break
-
-
