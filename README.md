@@ -3,6 +3,7 @@
 
 ### About
 Game of TicTacToe developed with Python.
+A practice assignment for Sogyo.
 
 
 ### Features
